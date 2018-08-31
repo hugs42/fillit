@@ -6,13 +6,25 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 13:32:54 by hugsbord          #+#    #+#             */
-/*   Updated: 2018/08/31 12:55:30 by hugsbord         ###   ########.fr       */
+/*   Updated: 2018/08/31 16:10:34 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_tetriminos	*ft_init_tetriminos(void)
+void				ft_print(t_map map)
+{
+	unsigned char	index;
+
+	index = 0;
+	while (index < map.size)
+	{
+		write(1, map.tab[index++], map.size);
+		ft_putchar('\n');
+	}
+}
+
+t_tetriminos		*ft_init_tetriminos(void)
 {
 	static unsigned char	name = 'A';
 	t_tetriminos			*tetriminos;
@@ -32,14 +44,14 @@ t_tetriminos	*ft_init_tetriminos(void)
 	return (tetriminos);
 }
 
-void			ft_clear_tetriminos(t_tetriminos *tetriminos)
+void				ft_clear_tetriminos(t_tetriminos *tetriminos)
 {
 	if (tetriminos->next)
 		ft_clear_tetriminos(tetriminos->next);
 	free(tetriminos);
 }
 
-t_tetriminos	*ft_add_tetriminos(t_tetriminos *tetriminos)
+t_tetriminos		*ft_add_tetriminos(t_tetriminos *tetriminos)
 {
 	t_tetriminos	*tmp;
 
@@ -52,4 +64,19 @@ t_tetriminos	*ft_add_tetriminos(t_tetriminos *tetriminos)
 		return (NULL);
 	}
 	return (tmp->next);
+}
+
+unsigned int		ft_nbr_tetriminos(t_tetriminos *tetriminos)
+{
+	t_tetriminos	*tmp;
+	unsigned int	size;
+
+	tmp = tetriminos;
+	size = 0;
+	while (tmp)
+	{
+		size = size + 1;
+		tmp = tmp->next;
+	}
+	return (size);
 }

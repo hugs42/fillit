@@ -6,13 +6,13 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 13:41:06 by hugsbord          #+#    #+#             */
-/*   Updated: 2018/08/31 02:43:57 by hugsbord         ###   ########.fr       */
+/*   Updated: 2018/08/31 16:44:34 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static unsigned int	ft_algo_get_size(unsigned int nbr)
+static unsigned int		ft_algo_get_size(unsigned int nbr)
 {
 	unsigned int	size;
 
@@ -22,7 +22,7 @@ static unsigned int	ft_algo_get_size(unsigned int nbr)
 	return (size);
 }
 
-static char		ft_algo_set_map(unsigned int size, t_map *map)
+static char				ft_algo_set_map(unsigned int size, t_map *map)
 {
 	unsigned int	n;
 
@@ -38,13 +38,14 @@ static char		ft_algo_set_map(unsigned int size, t_map *map)
 			ft_free_tab((*map).tab, n);
 			return (FALSE);
 		}
+
 		ft_memset((*map).tab[n++], '.', size);
 	}
 	(*map).size = size;
 	return (TRUE);
 }
 
-static void		ft_algo_place_tetriminos(t_tetriminos *tetri,
+static void				ft_algo_place_tetriminos(t_tetriminos *tetri,
 											t_map map, t_coord coord,
 											char c)
 {
@@ -54,7 +55,8 @@ static void		ft_algo_place_tetriminos(t_tetriminos *tetri,
 	map.tab[coord.y + tetri->pos[3].y][coord.x + tetri->pos[3].x] = c;
 }
 
-static char		ft_algo_brutforce(t_tetriminos *tetri, t_map map)
+
+static char				ft_algo_brutforce(t_tetriminos *tetri, t_map map)
 {
 	t_coord		coord;
 
@@ -66,10 +68,11 @@ static char		ft_algo_brutforce(t_tetriminos *tetri, t_map map)
 		coord.x = 0;
 		while (coord.x + tetri->max_value.x < map.size)
 		{
-			if (map.tab[tetri->pos[0].y + coord.y][tetri->pos[0].x + coord.x] == '.' &&
-				map.tab[tetri->pos[1].y + coord.y][tetri->pos[1].x + coord.x] == '.' &&
-				map.tab[tetri->pos[2].y + coord.y][tetri->pos[2].x + coord.x] == '.' &&
-				map.tab[tetri->pos[3].y + coord.y][tetri->pos[3].x + coord.x] == '.')
+			if (map.tab[tetri->pos[0].y + coord.y][tetri->pos[0].x + coord.x]
+				== '.' && map.tab[tetri->pos[1].y + coord.y][tetri->pos[1].x
+				+ coord.x] == '.' && map.tab[tetri->pos[2].y + coord.y]
+				[tetri->pos[2].x + coord.x] == '.' && map.tab[tetri->pos[3].y +
+				coord.y][tetri->pos[3].x + coord.x] == '.')
 			{
 				ft_algo_place_tetriminos(tetri, map, coord, tetri->name);
 				if (ft_algo_brutforce(tetri->next, map) == TRUE)
@@ -80,14 +83,13 @@ static char		ft_algo_brutforce(t_tetriminos *tetri, t_map map)
 		}
 		coord.y += 1;
 	}
-
 	return (FALSE);
 }
 
-char			ft_algo(t_tetriminos *tetriminos)
+char					ft_algo(t_tetriminos *tetriminos)
 {
-	t_map		map;
-	char		end;
+	t_map			map;
+	char			end;
 	unsigned int	size;
 
 	map.tab = NULL;

@@ -37,9 +37,13 @@ t_tetriminos	*ft_init_tetriminos(void);
 void		ft_clear_tetriminos(t_tetriminos *tetriminos);
 t_tetriminos	*ft_add_tetriminos(t_tetriminos *tetriminos);
 unsigned int	ft_nbr_tetriminos(t_tetriminos *tetriminos);
+
 void		ft_free_tab(char **map, unsigned int size);
+
+
 char		ft_validation(char buf[BUFFER_SIZE]);
 char		ft_parser(char buf[BUFFER_SIZE]);
 char		ft_algo(t_tetriminos *tetriminos);
 void		ft_print(t_map map);
+
 #endif
