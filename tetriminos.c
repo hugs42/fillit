@@ -6,21 +6,11 @@
 /*   By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 13:32:54 by hugsbord          #+#    #+#             */
-/*   Updated: 2018/08/30 12:46:23 by hugsbord         ###   ########.fr       */
+/*   Updated: 2018/08/31 12:55:30 by hugsbord         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-char	**ft_new_map(char **map, int square_size)
-{
-	int x;
-	int y;
-
-//	if ()
-
-	return (map);
-}
 
 t_tetriminos	*ft_init_tetriminos(void)
 {

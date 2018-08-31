@@ -6,7 +6,7 @@
 #    By: hugsbord <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/13 21:46:51 by hugsbord          #+#    #+#              #
-#    Updated: 2018/08/29 17:35:31 by hugsbord         ###   ########.fr        #
+#    Updated: 2018/08/31 14:40:35 by hugsbord         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,13 @@ all: $(NAME)
 $(NAME):
 		@echo "\033[32m>>\033[0m \033[33mStarting library & fillit\033[32m compilation\033[0m \033[0m"
 		@make $(DIRLIB)
-		@gcc -c $(SRC)
-		@gcc -o $(NAME) $(OBJ) $(LIB)
+		@gcc -c $(CFLAGS) $< -o $@
+		@gcc -o $(NAME) $(OBJ) $(DIRLIB) $(LIB)
 		@echo "\033[32m>> Fillit correctly created ... OK\033[0m"
 
 clean:
 		@rm -f $(OBJ)
+		@make -C libft clean
 		@echo "\033[32mObjects \033[31mremoved\033[0m"
 
 fclean: clean
